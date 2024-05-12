@@ -1,0 +1,138 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+                data-mdb-collapse-init
+                class="navbar-toggler"
+                type="button"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        {% if categories %}
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'index' %}">
+                <span style="font-weight: bolder;">
+                    Fonus</span>
+                <span
+                        style="font-weight: bolder; border: 1px solid red; border-radius: 10px; padding: 0 3px; background-color: mediumslateblue; color: white"
+                >.UZ</span>
+            </a>
+
+            <!-- Left links -->
+            <div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% for category in categories %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' category.slug %}">{{ category.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+        {% else %}
+        <a href="{% url 'index' %}" class="btn btn-primary">
+            Bosh Sahifa
+        </a>
+        {% endif %}
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+
+            <!-- Avatar -->
+            <div class="dropdown">
+                <a
+                        class="btn btn-primary dropdown-toggle"
+                        href="#"
+                        role="button"
+                        id="dropdownMenuLink"
+                        data-mdb-dropdown-init
+                        data-mdb-ripple-init
+                        aria-expanded="false"
+                >
+                    {% if request.user.is_authenticated %}
+                        {{ request.user.get_username }}
+                    {% else %}
+                        Account
+                    {% endif %}
+
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a class="dropdown-item" href="{% url 'my_account' %}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            Mening Accountim
+                            <i class="fas fa-user ms-3"></i>
+                        </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'account_settings' %}">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Sozlamalar
+                                <i class="fas fa-gear"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'logout' %}" id="chiqish">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Chiqish
+                                <i class="fas fa-arrow-right-from-bracket"></i>
+                            </div>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="dropdown-item" href="{% url 'login' %}">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Kirish
+                                <i class="fas fa-arrow-right-to-bracket"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'register' %}">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Ro'yxatdan o'tish
+                                <i class="fas fa-user-plus ms-3"></i>
+                            </div>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+        <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+<div class="d-flex justify-content-start align-items-center gap-2 m-2">
+    <div style="border: 1px solid black; border-radius: 1rem; padding: 3px 8px; background-color: cornsilk">
+        Hududlar:
+    </div>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 list-group-horizontal">
+        {% for region in regions %}
+        <li class="nav-item me-2">
+            <a class="nav-link" href="{% url 'region' region.slug %}">{{ region.display_name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+<hr>

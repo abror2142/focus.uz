@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Links -->
+    {% include 'components/_links.html' %}
+    <!-- Links -->
+
+    <!-- Title -->
+    <title>
+      {% block title %}
+        Mushtariy News
+      {% endblock title %}
+    </title>
+    <!-- Title -->
+
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        {% include 'layout/header.html'%}
+    </header>
+    <!-- Header -->
+
+    <!-- Main -->
+    <main>
+        {% block main %}
+        {% endblock main %}
+    </main>
+    <!-- Main -->
+
+    <!-- Footer -->
+    <footer>
+        {% include 'layout/footer.html' %}
+    </footer>
+    <!-- Footer -->
+
+    <!-- Script -->
+    {% include 'components/_scripts.html'%}
+    <!-- Script -->
+
+</body>
+</html>

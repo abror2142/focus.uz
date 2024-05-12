@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+<div class="d-flex justify-content-between gap-5">
+
+  <div style="min-width: 280px">
+    <h5 class="text-nowrap">So'nggi Yangiliklar</h5>
+    {% for latest_post in latest_posts %}
+    <div>
+      <div class="me-3" style="font-size: 0.8rem; color: deepskyblue; text-align: right; padding: 2px;">
+        <i class="far fa-clock me-1"></i>
+        {{ latest_post.created_at|date:'G:i' }}
+      </div>
+      <a href="{% url 'post_detail' latest_post.slug %}">{{ latest_post.title }}</a>
+    </div>
+    <hr>
+    {% endfor %}
+  </div>
+
+  <div class="card p-4">
+      <h4>{{ post.title }}</h4>
+      <h5>{{ post.description }}</h5>
+      {% if post.image %}
+      <img src="{{ post.image.url }}" class="card-img-top" alt="Hollywood Sign on The Hill"/>
+      {% endif %}
+      <div class="card-body">
+        <p class="card-text">
+          {{ post.content }}
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock main %}

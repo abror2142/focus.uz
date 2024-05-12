@@ -1,0 +1,17 @@
+# Bytecode
+*__pycache__/
+
+# Environments
+*.venv
+*.env
+*.venv/
+*.env/
+
+# SQLite Database
+*db.sqlite3
+
+# MacOS stuff
+*.DS_Store
+
+# Pycharm stuff
+*.idea
